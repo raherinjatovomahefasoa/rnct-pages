@@ -1,0 +1,21 @@
+{
+  "name": "rnct-pages",
+  "version": "1.0.0",
+  "description": "Modifies the pages and it's meta data",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "rnct-pages"
+  ],
+  "author": "Mahefasoa",
+  "license": "ISC",
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "file:C:/node_modules/@fortawesome/fontawesome-free",
+    "bootstrap": "^4.5.0",
+    "bootstrap-iconpicker": "file:C:/Framework/bootstrap-iconpicker-1.10.0",
+    "jquery": "^1.9.1",
+    "popper.js": "^1.16.0"
+  }
+}
