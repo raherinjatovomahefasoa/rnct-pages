@@ -30,15 +30,29 @@ If you don't know anything about RNCT then this is not for you because this is a
 #### NB:
 Link it after the `CoreUI` Js Script and `Jquery` before the end of the body tag.
 
-To do so just add jquery in the `settings.json` file in `js` and the dependencies and the library in the `jslazy`
+To do so just add jquery in the `settings.json` file in `js` and the dependencies and the library in the `jslazy`.
+Here is how the `settings.json` looked like during the test
 
 ``` json
+"css": {
+    "fontawesome-free": "node_modules/@fortawesome/fontawesome-free/css/all.css",
+    "perfect-scrollbar": "node_modules/perfect-scrollbar/css/perfect-scrollbar.css",
+    "bootstrap": "node_modules/bootstrap/dist/css/bootstrap.min.css",
+    "bootstrap-iconpicker": "node_modules/bootstrap-iconpicker-latest/dist/css/bootstrap-iconpicker.css",
+    "@coreui": "node_modules/@coreui/coreui/dist/css/coreui.min.css",
+    "rnct-admin-module": "dist/css/rnct-admin-module.css"
+},
+"js": {
+    "jquery": "node_modules/jquery/jquery.min.js"
+},
 "jslazy": {
     "perfect-scrollbar": "node_modules/perfect-scrollbar/dist/perfect-scrollbar.min.js",
-    "@popperjs": "node_modules/@popperjs/core/dist/umd/popper.min.js",
+    "popper.js": "node_modules/popper.js/dist/umd/popper.min.js",
     "@coreui": "node_modules/@coreui/coreui/dist/js/coreui.min.js",
+    "bootstrap.bundle": "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
+    "bootstrap-iconpicker": "node_modules/bootstrap-iconpicker-latest/dist/js/bootstrap-iconpicker.bundle.min.js",
     "rnct-admin-module": "dist/js/rnct-admin-module.js",
-    "rnct-pages": "node_modules/rnct-sidebar/dist/js/rnct-pages.js"
+    "rnct-pages": "node_modules/rnct-pages/dist/js/rnct-pages.js"
 }
 ```
 
@@ -87,8 +101,7 @@ $(document).ready(function(){
 
 ```js
 $(document).ready(function(){
-    var rnctSidebar = new RnctSidebar('#wrapper'{
-        developerMode: false,// show the ajax response in browser console
+    var rnctPages = new RnctPages('#wrapper'{
         trigger: null, // a button selector to display the this object if asPanel is set to true
         asPanel: false, // display it as a panel that can be closed
         column_1: 8, // modifies the column bootstrap grid

@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit3928c30f1809ae0d5bfd6c0232e427e0
+class ComposerStaticInitdb12ac8b43135f2be420e8ccca352427
 {
     public static $prefixLengthsPsr4 = array (
         'R' => 
@@ -22,21 +22,16 @@ class ComposerStaticInit3928c30f1809ae0d5bfd6c0232e427e0
 
     public static $classMap = array (
         'RnctAdmin\\Main\\Ajax' => __DIR__ . '/../..' . '/src/main/ajax/ajax.php',
-        'RnctAdmin\\Main\\CoreUI' => __DIR__ . '/../..' . '/src/main/coreui/CoreUI.php',
         'RnctAdmin\\Main\\Database' => __DIR__ . '/../..' . '/src/main/database/Database.php',
-        'RnctAdmin\\Main\\Footer' => __DIR__ . '/../..' . '/src/main/html/Footer.php',
-        'RnctAdmin\\Main\\Header' => __DIR__ . '/../..' . '/src/main/html/Header.php',
         'RnctAdmin\\Main\\RnctPages' => __DIR__ . '/../..' . '/src/main/ajax/RnctPages/rnct_pages.php',
-        'RnctAdmin\\Main\\Sidebar' => __DIR__ . '/../..' . '/src/main/ajax/Sidebar/sidebar.php',
-        'RnctAdmin\\Main\\Url_Manager' => __DIR__ . '/../..' . '/src/main/url/URL_Manager.php',
     );
 
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit3928c30f1809ae0d5bfd6c0232e427e0::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit3928c30f1809ae0d5bfd6c0232e427e0::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInit3928c30f1809ae0d5bfd6c0232e427e0::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInitdb12ac8b43135f2be420e8ccca352427::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInitdb12ac8b43135f2be420e8ccca352427::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInitdb12ac8b43135f2be420e8ccca352427::$classMap;
 
         }, null, ClassLoader::class);
     }

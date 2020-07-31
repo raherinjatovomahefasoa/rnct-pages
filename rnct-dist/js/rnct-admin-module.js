@@ -619,7 +619,7 @@ function isSameJson(newJson, oldJson){
         if (newJson.hasOwnProperty(variable)) {
             if (newJson[variable] != oldJson[variable]) {
                 result = false;
-                console.log([newJson[variable],oldJson[variable]]);
+                // console.log([newJson[variable],oldJson[variable]]);
             }
         }
     }
