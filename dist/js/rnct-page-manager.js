@@ -1,7 +1,17 @@
 function RnctPages(target, _settings){
+    let error;
+    try {
+        new Element();
+    } catch (e) {
+        console.error("rnct js module Not Found, link it from rnct-dit/js");
+        error++;
+    }
+    if (error) {
+        return false;
+    }
     // set this to the var self
     let self = this;
-    self.name = "RnctAdmin Pages Manager";
+    self.name = "Page Manager";
     self.version = "1.0.0";
     self.items = [];
     self.modal = [];
@@ -30,6 +40,9 @@ function RnctPages(target, _settings){
     })
     // triger after the sql data are received
     function parseData(jsonString){
+        if (value.developerMode) {
+            console.log(jsonString);
+        }
         // pass sql database
         self.pageDb = JSON.parse(jsonString).pageDb;
         // reset all input
@@ -127,6 +140,9 @@ function RnctPages(target, _settings){
                     action: afterCreation
                 })
                 function afterCreation(str){
+                    if (value.developerMode) {
+                        console.log(str);
+                    }
                     // get data and update everything and hide spinner by sending the inputobj in spinnerInput
                     getsql({
                         open: self._settings.phpAjax,
@@ -154,6 +170,9 @@ function RnctPages(target, _settings){
                     action: afterUpdate
                 })
                 function afterUpdate(str){
+                    if (value.developerMode) {
+                        console.log(str);
+                    }
                     // get data and update everything and hide spinner by sending the inputobj in spinnerInput
                     getsql({
                         open: self._settings.phpAjax,
@@ -198,6 +217,9 @@ function RnctPages(target, _settings){
                     })
                     // called after delete
                     function afterDelete(str){
+                        if (value.developerMode) {
+                            console.log(str);
+                        }
                         // get data and update everything and hide spinner by sending the inputobj in spinnerInput
                         getsql({
                             open: self._settings.phpAjax,

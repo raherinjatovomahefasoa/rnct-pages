@@ -14,7 +14,7 @@
         <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
         <script src="node_modules/bootstrap-iconpicker/dist/js/bootstrap-iconpicker.bundle.min.js"></script>
         <script src="rnct-dist/js/rnct-admin-module.js"></script>
-        <script src="dist/js/rnct-pages.js"></script>
+        <script src="dist/js/rnct-page-manager.js"></script>
     </head>
     <body>
         <button type="button" class="btn btn-secondary" id="trigger">Show</button>

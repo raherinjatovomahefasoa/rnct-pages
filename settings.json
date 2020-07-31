@@ -15,21 +15,7 @@
         "pages": "files/pages",
         "images": "files/images"
     },
-    "css": {
-        "fontawesome-free": "node_modules/@fortawesome/fontawesome-free/css/all.css",
-        "perfect-scrollbar": "node_modules/perfect-scrollbar/css/perfect-scrollbar.css",
-        "@coreui": "node_modules/@coreui/coreui/dist/css/coreui.min.css",
-        "rnct-admin-module": "dist/css/rnct-admin-module.css"
-    },
-    "js": {
-        "jquery": "node_modules/jquery/jquery.min.js"
-    },
-    "jslazy": {
-        "perfect-scrollbar": "node_modules/perfect-scrollbar/dist/perfect-scrollbar.min.js",
-        "@popperjs": "node_modules/@popperjs/core/dist/umd/popper.min.js",
-        "@coreui": "node_modules/@coreui/coreui/dist/js/coreui.min.js",
-        "rnct-admin-module": "dist/js/rnct-admin-module.js",
-        "sortablejs": "node_modules/sortablejs/Sortable.js",
-        "rnct-sidebar": "node_modules/rnct-sidebar/dist/js/rnct-sidebar.js"
-    }
+    "css": {},
+    "js": {},
+    "jslazy": {}
 }

@@ -1,6 +1,5 @@
 <?php
 use RnctAdmin\Main\Database;
-use RnctAdmin\Main\Sidebar;
 use RnctAdmin\Main\RnctPages;
 use RnctAdmin\Main\Ajax;
 

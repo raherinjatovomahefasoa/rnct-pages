@@ -1,110 +1,152 @@
 ## Intro
-This is a `CRUD` app that is a functionality of the project RnctAdmin. It requires to be installed in RnctAdmin as an npm module to work however it can work outside of it. It uses AJAX and PHP to modify the MYSQLI database.
+A simple bootstrap, AJAX, PHP and Mysqli webpage CRUD app.
 
-## NB:
+![rnct-pages demo](files/images/rnct-page-manager.PNG)
 
-If you don't know anything about RNCT then this is not for you because this is aN AJAX and PHP based personal project.
-
-## Functionality
-- create, delete, update pages
-- add title, description, keywords, link, link text, page type and category
-- directly create the php file in the specified dir
-
-## Database Installation
-- If you don't have the tables yet then it'll created automatically
-- edit the name of the database if you already have them, and add the dir where the files will be created edit the `settings.json` and add the connection settings.
-
-```json
-"tables": {
-    "pages": "yourpagesdbname"
-},
-"folders": {
-    "pages": "files/... your dir",
-},
-```
+## Features
+- `Create`, `Update`, `Delete` webpage `metadata` (`title`, `description`, `keywords`) and (link, link_text ...);
+- Saves the data as a JSON string in a Mysqli table
+- Automaticaly create a PHP file named as the `link`
+- No refresh, using AJAX
+- Can be display as a panel by the click of a button
 
 ## Installation
-### With RnctAdmin
-- Link the Js and Css files in the `dist` folder of `RnctAdmin` and the other dependencies
+- clone the repo
 
-#### NB:
-Link it after the `CoreUI` Js Script and `Jquery` before the end of the body tag.
+```bash
+$ git clone https://github.com/raherinjatovomahefasoa/rnct-pages.git
+```
 
-To do so just add jquery in the `settings.json` file in `js` and the dependencies and the library in the `jslazy`.
-Here is how the `settings.json` looked like during the test
+## Mysqli Database
+- Create a Mysqli Table like this
 
-``` json
-"css": {
-    "fontawesome-free": "node_modules/@fortawesome/fontawesome-free/css/all.css",
-    "perfect-scrollbar": "node_modules/perfect-scrollbar/css/perfect-scrollbar.css",
-    "bootstrap": "node_modules/bootstrap/dist/css/bootstrap.min.css",
-    "bootstrap-iconpicker": "node_modules/bootstrap-iconpicker-latest/dist/css/bootstrap-iconpicker.css",
-    "@coreui": "node_modules/@coreui/coreui/dist/css/coreui.min.css",
-    "rnct-admin-module": "dist/css/rnct-admin-module.css"
-},
-"js": {
-    "jquery": "node_modules/jquery/jquery.min.js"
-},
-"jslazy": {
-    "perfect-scrollbar": "node_modules/perfect-scrollbar/dist/perfect-scrollbar.min.js",
-    "popper.js": "node_modules/popper.js/dist/umd/popper.min.js",
-    "@coreui": "node_modules/@coreui/coreui/dist/js/coreui.min.js",
-    "bootstrap.bundle": "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
-    "bootstrap-iconpicker": "node_modules/bootstrap-iconpicker-latest/dist/js/bootstrap-iconpicker.bundle.min.js",
-    "rnct-admin-module": "dist/js/rnct-admin-module.js",
-    "rnct-pages": "node_modules/rnct-pages/dist/js/rnct-pages.js"
+```sql
+CREATE TABLE `pages` (
+  `id` int(11) NOT NULL,
+  `page_id` varchar(70) NOT NULL,
+  `data` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+```
+
+- Modify the `settings.json`
+
+The server
+```json
+"mysqlConnect": {
+    "server": "localhost",
+    "database": "dbname",
+    "username": "username",
+    "password": "yourpassword"
 }
 ```
 
-### Without RnctAdmin
-clone the git repo and install the dependencies by opening the folder in your terminal and run
-```npm
-$ npm install
+The table name
+
+```json
+"tables": {
+    "pages": "pages"
+}
 ```
 
-Then just launch `index.php` in your server
+The page files folder
+
+```json
+"folders": {
+    "pages": "files/pages"
+},
+```
+
+## PHP ajax needed files
+- `ajax.php`, `settings.json` files and the `src`, `vendor` folders should be placed in the root of your host with your `index.php`.
+
+eg: localhost/**here..**
+
+- write this in your `ajax.php`
+
+
+```php
+use RnctAdmin\Main\Database;
+use RnctAdmin\Main\Ajax;
+use RnctAdmin\Main\RnctPages;
+
+// get main package
+require_once realpath("vendor/autoload.php");
+
+// connect to database
+$settings = realpath("settings.json");
+$db = new Database($settings);
+$param = $db->get_params();
+
+// call ajax
+$ajax = new Ajax($param);
+$ajax->process_data();
+```
+
+## Important HTML tag
+- Add this in your index `head` tag to avoid some AJAX relative path problems
+
+```html
+<base href="/">
+```
 
 ## Usage
-
-- Just create it as a js object
-
-```html
-<div id="#wrapper"></div>
-```
-
-```js
-$(document).ready(function(){
-    var rnctSidebar = new RnctPages('#wrapper');
-})
-```
-
-## Options
-
-- asPanel
-
+- Link the CDN dependencies which are `jquery@1.9.1`, `popper.js@1.16.0`, `bootstrap@4.5.0`, `bootstrap-iconpicker-latest`.
+- Link the `css` and `js` in the `rnct-dist` folder and then the `js` in `dist` folder
 
 ```html
-<button type="button" id="trigger">Show</button>
+<!-- link the other dependencies css here -->
+<link rel="stylesheet" href="rnct-dist/css/rnct-admin-module.css">
+<!-- link the other dependencies script here -->
+<script src="rnct-dist/js/rnct-admin-module.js"></script>
+<script src="dist/js/rnct-page-manager"></script>
+```
+
+- Create a `div`, add an `id` to it.
+
+```html
 <div id="wrapper"></div>
 ```
+- And just write this js code
 
 ```js
-$(document).ready(function(){
-    var rnctPages = new RnctPages('#wrapper'{
-        trigger: "#trigger", // a button selector to display the this object if asPanel is set to true
-        asPanel: true // display it as a panel that can be closed
-    });
-})
+var rnctPages = new RnctPages('#wrapper');
 ```
 
-- all options
+- `asPanel` setting
 
+```html
+<button type="button" id="button">Show</button>
+<div id="wrapper"></div>
+```
 ```js
-$(document).ready(function(){
-    var rnctPages = new RnctPages('#wrapper'{
-        trigger: null, // a button selector to display the this object if asPanel is set to true
-        asPanel: false, // display it as a panel that can be closed
-        column_1: 8, // modifies the column bootstrap grid
-    });
-})
+var rnctPages = new RnctPages('#wrapper',{
+    trigger: "#button",
+    asPanel: true
+});
+```
+
+## Settings
+| Index    | Description     | Variable type
+| :------------- | :------------- |:------------- |
+| trigger     | Selector of the trigger button| Jquery selector |
+| asPanel     | Display as a panel    | boolean |
+| developerMode     | Show the ajax response in the browser console  | boolean |
+| column_1     | defines the css class `col-x` of the 2 col of the app    | 2-11 |
+
+## Database JSON string
+- The JSON string is saved in the column `data`
+- The JSON string structure is like this
+```json
+{
+    "type":"public", // type of the page, can also be protected, and private
+    "category":"page_5f9879hfeb2356", // id of the page selected in the input category
+    "link":"your-page-link",
+    "link_text":"Your link text",
+    "icon":"fas fa-user-lock",
+    "title":"You page title",
+    "descri":"Your page description",
+    "keywords":"some, key, words",
+    "date":"1596141418",
+    "id":"page_5f219bceb3370" // id of the page, generated automaticaly
+}
 ```
